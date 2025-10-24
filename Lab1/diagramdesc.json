@@ -1,0 +1,84 @@
+{
+  "Book": {
+    "type": "object",
+    "properties": {
+      "BookID": { "type": "integer" },
+      "ISBN": { "type": "string" },
+      "Title": { "type": "string" },
+      "YearPublished": { "type": "integer" },
+      "Genre": { "type": "string" },
+      "PublisherID": { "type": "integer" }
+    },
+    "required": ["BookID", "ISBN", "Title", "PublisherID"]
+  },
+
+  "Copy": {
+    "type": "object",
+    "properties": {
+      "CopyID": { "type": "integer" },
+      "BookID": { "type": "integer" },
+      "Condition": { "type": "string" },
+      "IsAvailable": { "type": "boolean" }
+    },
+    "required": ["CopyID", "BookID"]
+  },
+
+  "Author": {
+    "type": "object",
+    "properties": {
+      "AuthorID": { "type": "integer" },
+      "FullName": { "type": "string" },
+      "BirthDate": { "type": "string", "format": "date" }
+    },
+    "required": ["AuthorID", "FullName"]
+  },
+
+  "BookAuthor": {
+    "type": "object",
+    "properties": {
+      "BookID": { "type": "integer" },
+      "AuthorID": { "type": "integer" }
+    },
+    "required": ["BookID", "AuthorID"],
+    "description": "Many-to-Many between Book and Author"
+  },
+
+  "Member": {
+    "type": "object",
+    "properties": {
+      "MemberID": { "type": "integer" },
+      "FullName": { "type": "string" },
+      "Email": { "type": "string", "format": "email" },
+      "Phone": { "type": "string" },
+      "Address": { "type": "string" },
+      "MemberType": { "type": "string" },
+      "JoinDate": { "type": "string", "format": "date" }
+    },
+    "required": ["MemberID", "FullName", "Email"]
+  },
+
+  "Loan": {
+    "type": "object",
+    "properties": {
+      "LoanID": { "type": "integer" },
+      "CopyID": { "type": "integer" },
+      "MemberID": { "type": "integer" },
+      "LoanDate": { "type": "string", "format": "date" },
+      "DueDate": { "type": "string", "format": "date" },
+      "ReturnDate": { "type": ["string", "null"], "format": "date" },
+      "FineAmount": { "type": "number" }
+    },
+    "required": ["LoanID", "CopyID", "MemberID", "LoanDate", "DueDate"]
+  },
+
+  "Publisher": {
+    "type": "object",
+    "properties": {
+      "PublisherID": { "type": "integer" },
+      "Name": { "type": "string" },
+      "Address": { "type": "string" },
+      "Phone": { "type": "string" }
+    },
+    "required": ["PublisherID", "Name"]
+  }
+}
